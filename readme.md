@@ -11,7 +11,7 @@ However, it's evident that our journey won't be without its challenges:
 
 Despite these obstacles, this is what we have to do: 
 
-- Introduce a new feature that handles the unfortunate dead of the virtual pet when any of its attributes goes below zero.
+- Introduce a new simple feature, to pet our virtual pet, by which the happiness will be increased by 10.
 
 ## Instructions
 
@@ -19,7 +19,15 @@ Guided by our principles as a good software engineers, we have plan:
 
 1. Establish a safety net of tests: Either through unit tests or characterization tests.
 2. Refactor the existing code: addressing its bad smells and enhancing its overall clarity, maintainability, and extensibility.
-3. Introduce the new feature: handle the virtual pet's dead when any attribute falls below zero.
+3. Introduce the new feature: walk the pet, but it will go with time ```walk 5```, each minute will increase by 2 happiness and hunger and decrease energy by 2.
+
+## Tips & instructions
+
+- Here a useful library for characterisation tests: [ApprovalTests](https://approvaltests.com/)
+- The code is used widespread in production, please don't change its interface, neither the way it is constructed nor the method's signature.
+- Feel free to add new classes, default params, methods, or any new code as needed.
+- Throughout this process, adhere strictly to the principles of Test-Driven Development (TDD).
+- Remember to commit your changes frequently.
 
 ## How to start
 
@@ -30,25 +38,3 @@ Guided by our principles as a good software engineers, we have plan:
  rm -rf refactored/src/test/kotlin/*
 ```
 - Have fun!!
-
-
-## Tips & instructions
-
-- Here a useful library for characterisation tests: [ApprovalTests](https://approvaltests.com/)
-- The code is used widespread in production, please don't change its interface, neither the constructor nor the method's signature.
-- Feel free to add new classes, methods, or any new code as needed.
-- Throughout this process, adhere strictly to the principles of Test-Driven Development (TDD).
-
-## Bad smells
-
-Here are the code smells present in the provided code:
-
-1. **High cyclomatic complexity**: The `interact` function contains nested `if` statements, which can lead to high cyclomatic complexity and make the code hard to understand and maintain.
-2. **Duplication**: There's duplication of code within the `if` branches for handling different actions. Each branch repeats similar conditional checks and logic.
-3. **Magic Numbers**: Arbitrary numbers like 20, 10, 30, etc., are used without clear explanations, making the code harder to understand.
-4. **Mixed Responsibility**: The `interact` function is responsible for both processing actions and ensuring status values stay within valid ranges, violating the Single Responsibility Principle.
-5. **Hardcoded Values**: Activity names like "twister", "chess", etc., are hardcoded and not easily modifiable. This can lead to maintenance issues if these values need to change in the future.
-6. **Minimal Error Handling**: There's minimal error handling for invalid or unexpected inputs. The code does not handle cases where the action string does not contain two parts or if the action or activity is unknown.
-8. **Long Function**: The `interact` function is doing too many things and could benefit from being split into smaller, more focused functions. This makes the code harder to read and maintain.
-
-These code smells can lead to reduced code quality, increased likelihood of bugs, and difficulties in future modifications and maintenance.
