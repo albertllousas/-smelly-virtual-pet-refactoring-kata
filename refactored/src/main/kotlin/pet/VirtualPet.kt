@@ -1,6 +1,13 @@
 package pet
 
-class VirtualPet(var hunger: Int = 50, var happiness: Int = 50, var energy: Int = 50) {
+class VirtualPet(hunger: Int = 50, happiness: Int = 50, energy: Int = 50) {
+
+    var hunger = hunger
+        private set
+    var happiness = happiness
+        private set
+    var energy = energy
+        private set
 
     fun interact(action: String) {
 
