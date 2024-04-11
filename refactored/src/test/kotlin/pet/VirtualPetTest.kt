@@ -6,6 +6,11 @@ import org.junit.jupiter.api.Test
 class VirtualPetTest {
 
     @Test
+    fun `should play hide and seek`() {
+        VirtualPet().apply { interact("play hide-and-seek") } shouldBe VirtualPet(hunger = 60, happiness = 65, energy = 35)
+    }
+
+    @Test
     fun `should play chess`() {
         VirtualPet().apply { interact("play chess") } shouldBe VirtualPet(hunger = 50, happiness = 60, energy = 45)
     }
@@ -42,9 +47,9 @@ class VirtualPetTest {
 
     @Test
     fun `should not apply any change when pet is not alive`() {
-        VirtualPet(hunger = 100).apply { interact("play football") } shouldBe VirtualPet(hunger = 100, happiness = 50, energy = 50)
-        VirtualPet(happiness = 0).apply { interact("play football") } shouldBe VirtualPet(hunger = 50, happiness = 0, energy = 50)
-        VirtualPet(energy = 0).apply { interact("play football") } shouldBe VirtualPet(hunger = 50, happiness = 50, energy = 0)
+        VirtualPet(hunger = 100).apply { interact("play toys") } shouldBe VirtualPet(hunger = 100, happiness = 50, energy = 50)
+        VirtualPet(happiness = 0).apply { interact("play toys") } shouldBe VirtualPet(hunger = 50, happiness = 0, energy = 50)
+        VirtualPet(energy = 0).apply { interact("play toys") } shouldBe VirtualPet(hunger = 50, happiness = 50, energy = 0)
     }
 
     @Test
