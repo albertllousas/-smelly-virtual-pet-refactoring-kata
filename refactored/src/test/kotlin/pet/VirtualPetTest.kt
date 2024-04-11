@@ -41,6 +41,13 @@ class VirtualPetTest {
     }
 
     @Test
+    fun `should not apply any change when pet is not alive`() {
+        VirtualPet(hunger = 100).apply { interact("play football") } shouldBe VirtualPet(hunger = 100, happiness = 50, energy = 50)
+        VirtualPet(happiness = 0).apply { interact("play football") } shouldBe VirtualPet(hunger = 50, happiness = 0, energy = 50)
+        VirtualPet(energy = 0).apply { interact("play football") } shouldBe VirtualPet(hunger = 50, happiness = 50, energy = 0)
+    }
+
+    @Test
     fun `should do nothing`() {
         VirtualPet().apply { interact("nothing") } shouldBe VirtualPet(hunger = 55, happiness = 45, energy = 45)
     }
