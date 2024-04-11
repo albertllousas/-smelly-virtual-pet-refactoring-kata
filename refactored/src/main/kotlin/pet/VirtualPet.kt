@@ -78,24 +78,9 @@ class VirtualPet(var hunger: Int = 50, var happiness: Int = 50, var energy: Int 
                     energy = energy - 5
                 }
             }
-            if (hunger > 100) {
-                hunger = 100
-            }
-            if (happiness > 100) {
-                happiness = 100
-            }
-            if (energy > 100) {
-                energy = 100
-            }
-            if (hunger < 0) {
-                hunger = 0
-            }
-            if (happiness < 0) {
-                happiness = 0
-            }
-            if (energy < 0) {
-                energy = 0
-            }
+            hunger = hunger.coerceIn(0, 100)
+            happiness = happiness.coerceIn(0, 100)
+            energy = energy.coerceIn(0, 100)
         }
     }
 
