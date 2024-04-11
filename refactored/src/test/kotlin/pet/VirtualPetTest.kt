@@ -1,8 +1,6 @@
 package pet
 
 import io.kotest.matchers.shouldBe
-import io.mockk.every
-import io.mockk.mockk
 import org.junit.jupiter.api.Test
 
 class VirtualPetTest {
@@ -19,17 +17,17 @@ class VirtualPetTest {
 
     @Test
     fun `should feed meat`() {
-        VirtualPet().apply { interact("feed meat") } shouldBe VirtualPet(hunger = 30, happiness = 60, energy = 65)
+        VirtualPet().apply { interact("feed meat") } shouldBe VirtualPet(hunger = 30, happiness = 50, energy = 65)
     }
 
     @Test
     fun `should feed vegetables`() {
-        VirtualPet().apply { interact("feed vegetables") } shouldBe VirtualPet(hunger = 40, happiness = 55, energy = 55)
+        VirtualPet().apply { interact("feed vegetables") } shouldBe VirtualPet(hunger = 40, happiness = 50, energy = 55)
     }
 
     @Test
     fun `should feed candy`() {
-        VirtualPet().apply { interact("feed candy") } shouldBe VirtualPet(hunger = 45, happiness = 60, energy = 60)
+        VirtualPet().apply { interact("feed candy") } shouldBe VirtualPet(hunger = 45, happiness = 50, energy = 60)
     }
 
     @Test
@@ -46,14 +44,21 @@ class VirtualPetTest {
     fun `should interact with pet`() {
         VirtualPet().apply {
             interact("play hide-and-seek")
+            interact("nothing")
+            interact("nothing")
             interact("feed meat")
-//            interact("rest")
+            interact("nothing")
+            interact("rest")
             interact("play chess")
+            interact("nothing")
             interact("feed vegetables")
             interact("rest")
+            interact("nothing")
             interact("play toys")
             interact("feed candy")
-        } shouldBe VirtualPet(hunger = 47, happiness = 100, energy = 100)
+            interact("nothing")
+            interact("nothing")
+        } shouldBe VirtualPet(hunger = 82, happiness = 55, energy = 75)
     }
 
     @Test
@@ -65,7 +70,7 @@ class VirtualPetTest {
             interact("feed meat")
             interact("feed candy")
             interact("feed vegetables")
-        } shouldBe VirtualPet(hunger = 0, happiness = 100, energy = 100)
+        } shouldBe VirtualPet(hunger = 0, happiness = 50, energy = 100)
     }
 
     @Test

@@ -1,10 +1,6 @@
 package pet
 
-class VirtualPet {
-
-    var hunger = 50
-    var happiness = 50
-    var energy = 50
+class VirtualPet(var hunger: Int = 50, var happiness: Int = 50, var energy: Int = 50) {
 
     fun interact(action: String) {
 
@@ -102,4 +98,26 @@ class VirtualPet {
             }
         }
     }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as VirtualPet
+
+        if (hunger != other.hunger) return false
+        if (happiness != other.happiness) return false
+        if (energy != other.energy) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = hunger
+        result = 31 * result + happiness
+        result = 31 * result + energy
+        return result
+    }
+
+    override fun toString(): String =  "VirtualPet(hunger=$hunger, happiness=$happiness, energy=$energy)"
 }
