@@ -36,8 +36,13 @@ class VirtualPetTest {
     }
 
     @Test
-    fun `should do nothing for invalid inputs`() {
+    fun `should not apply any change on the pet for invalid inputs`() {
         VirtualPet().apply { interact("feed spaghetti") } shouldBe VirtualPet(hunger = 50, happiness = 50, energy = 50)
+    }
+
+    @Test
+    fun `should do nothing`() {
+        VirtualPet().apply { interact("nothing") } shouldBe VirtualPet(hunger = 55, happiness = 45, energy = 45)
     }
 
     @Test
