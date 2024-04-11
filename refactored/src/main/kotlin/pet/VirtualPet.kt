@@ -13,7 +13,7 @@ class VirtualPet(hunger: Int = 50, happiness: Int = 50, energy: Int = 50) {
 
         val parts = action.split(" ")
 
-        if (hunger != 100 && happiness != 0 && energy != 0) { // means the pet is alive
+        if (isAlive()) {
             if (parts[0] == "play") {
                 if (parts[1] == "hide-and-seek") {
                     happiness += 15
@@ -52,6 +52,8 @@ class VirtualPet(hunger: Int = 50, happiness: Int = 50, energy: Int = 50) {
             energy = energy.coerceIn(0, 100)
         }
     }
+
+    private fun isAlive() = hunger != 100 && happiness != 0 && energy != 0
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
