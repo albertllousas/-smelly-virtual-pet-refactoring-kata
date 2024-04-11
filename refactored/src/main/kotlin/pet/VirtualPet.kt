@@ -9,74 +9,36 @@ class VirtualPet(var hunger: Int = 50, var happiness: Int = 50, var energy: Int 
         if (hunger != 100 && happiness != 0 && energy != 0) {
             if (parts[0] == "play") {
                 if (parts[1] == "hide-and-seek") {
-                    if (happiness + 15 <= 115) {
-                        happiness += 15
-                    }
-                    if (energy - 15 >= -15) {
-                        energy -= 15
-                    }
-                    if (hunger + 10 <= 110) {
-                        hunger += 10
-                    }
+                    happiness += 15
+                    energy -= 15
+                    hunger += 10
                 } else if (parts[1] == "chess") {
-                    if (happiness + 10 <= 110) {
-                        happiness += 10
-                    }
-                    if (energy - 5 >= -5) {
-                        energy -= 5
-                    }
+                    happiness += 10
+                    energy -= 5
                 } else if (parts[1] == "toys") {
-                    if (happiness + 20 <= 120) {
-                        happiness += 20
-                    }
-                    if (energy - 10 >= -10) {
-                        energy -= 10
-                    }
-                    if (hunger + 2 <= 102) {
-                        hunger += 2
-                    }
+                    happiness += 20
+                    energy -= 10
+                    hunger += 2
                 }
             } else if (parts[0] == "feed") {
                 if (parts[1] == "meat") {
-                    if (hunger - 20 >= -20) {
-                        hunger -= 20
-                    }
-                    if (energy + 15 <= 100) {
-                        energy += 15
-                    }
+                    hunger -= 20
+                    energy += 15
                 } else if (parts[1] == "vegetables") {
-                    if (hunger - 10 >= -10) {
-                        hunger -= 10
-                    }
-                    if (energy + 5 <= 105) {
-                        energy += 5
-                    }
+                    hunger -= 10
+                    energy += 5
                 } else if (parts[1] == "candy") {
-                    if (hunger - 5 >= -5) {
-                        hunger -= 5
-                    }
-                    if (energy + 10 <= 110) {
-                        energy += 10
-                    }
+                    hunger -= 5
+                    energy += 10
                 }
             } else if (parts[0] == "rest") {
-                if (energy + 30 <= 130) {
-                    energy += 30
-                }
-                if (hunger + 10 <= 110) {
-                    hunger += 10
-                }
+                energy += 30
+                hunger += 10
                 happiness = 50
             } else if (parts[0] == "nothing") {
-                if (hunger + 5 <= 105) {
-                    hunger += 5
-                }
-                if (happiness - 5 >= -5) {
-                    happiness -= 5
-                }
-                if (energy - 5 >= -5) {
-                    energy -= 5
-                }
+                hunger += 5
+                happiness -= 5
+                energy -= 5
             }
             hunger = hunger.coerceIn(0, 100)
             happiness = happiness.coerceIn(0, 100)
@@ -104,5 +66,5 @@ class VirtualPet(var hunger: Int = 50, var happiness: Int = 50, var energy: Int 
         return result
     }
 
-    override fun toString(): String =  "VirtualPet(hunger=$hunger, happiness=$happiness, energy=$energy)"
+    override fun toString(): String = "VirtualPet(hunger=$hunger, happiness=$happiness, energy=$energy)"
 }
