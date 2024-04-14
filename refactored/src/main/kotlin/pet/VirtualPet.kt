@@ -2,6 +2,7 @@ package pet
 
 import pet.Interaction.Companion.playChess
 import pet.Interaction.Companion.playHideAndSeek
+import pet.Interaction.Companion.playWithToys
 
 class VirtualPet(hunger: Int = 50, happiness: Int = 50, energy: Int = 50) {
 
@@ -23,9 +24,7 @@ class VirtualPet(hunger: Int = 50, happiness: Int = 50, energy: Int = 50) {
                 } else if (parts[1] == "chess") {
                     playChess(this).let { updateWith(it) }
                 } else if (parts[1] == "toys") {
-                    happiness += 20
-                    energy -= 10
-                    hunger += 2
+                    playWithToys(this).let { updateWith(it) }
                 }
             } else if (parts[0] == "feed") {
                 if (parts[1] == "meat") {

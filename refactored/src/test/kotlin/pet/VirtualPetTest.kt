@@ -6,11 +6,6 @@ import org.junit.jupiter.api.Test
 class VirtualPetTest {
 
     @Test
-    fun `should play with toys`() {
-        VirtualPet().apply { interact("play toys") } shouldBe VirtualPet(hunger = 52, happiness = 70, energy = 40)
-    }
-
-    @Test
     fun `should feed meat`() {
         VirtualPet().apply { interact("feed meat") } shouldBe VirtualPet(hunger = 30, happiness = 50, energy = 65)
     }
