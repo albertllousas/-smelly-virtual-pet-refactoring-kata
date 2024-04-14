@@ -27,5 +27,9 @@ fun interface Interaction {
         val feedWithCandy = Interaction { pet ->
             VirtualPet(hunger = pet.hunger - 5, happiness = pet.happiness, energy = pet.energy + 10)
         }
+
+        val rest = Interaction { pet ->
+            VirtualPet(hunger = pet.hunger + 10, happiness = 50, energy = pet.energy + 30)
+        }
     }
 }

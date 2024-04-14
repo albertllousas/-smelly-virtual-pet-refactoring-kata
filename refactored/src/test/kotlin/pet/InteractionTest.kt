@@ -8,6 +8,7 @@ import pet.Interaction.Companion.feedWithVegetables
 import pet.Interaction.Companion.playChess
 import pet.Interaction.Companion.playHideAndSeek
 import pet.Interaction.Companion.playWithToys
+import pet.Interaction.Companion.rest
 
 class InteractionTest {
 
@@ -39,5 +40,10 @@ class InteractionTest {
     @Test
     fun `should feed with candy`() {
         feedWithCandy(VirtualPet()) shouldBe VirtualPet(hunger = 45, happiness = 50, energy = 60)
+    }
+
+    @Test
+    fun `should rest`() {
+        rest(VirtualPet()) shouldBe VirtualPet(hunger = 60, happiness = 50, energy = 80)
     }
 }
