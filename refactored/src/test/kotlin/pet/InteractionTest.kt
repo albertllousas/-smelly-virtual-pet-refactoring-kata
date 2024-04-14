@@ -2,6 +2,7 @@ package pet
 
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
+import pet.Interaction.Companion.doNothing
 import pet.Interaction.Companion.feedWithCandy
 import pet.Interaction.Companion.feedWithMeat
 import pet.Interaction.Companion.feedWithVegetables
@@ -45,5 +46,10 @@ class InteractionTest {
     @Test
     fun `should rest`() {
         rest(VirtualPet()) shouldBe VirtualPet(hunger = 60, happiness = 50, energy = 80)
+    }
+
+    @Test
+    fun `should do nothing`() {
+        doNothing(VirtualPet()) shouldBe VirtualPet(hunger = 55, happiness = 45, energy = 45)
     }
 }
