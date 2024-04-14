@@ -19,7 +19,6 @@ class VirtualPet(hunger: Int = 50, happiness: Int = 50, energy: Int = 50) {
         private set
 
     fun interact(action: String) {
-
         if (isAlive()) {
             when(action) {
                 "play hide-and-seek" -> playHideAndSeek(this)
@@ -32,17 +31,13 @@ class VirtualPet(hunger: Int = 50, happiness: Int = 50, energy: Int = 50) {
                 "nothing" -> doNothing(this)
                 else -> this
             }.let { updateWith(it) }
-
-            hunger = hunger.coerceIn(0, 100)
-            happiness = happiness.coerceIn(0, 100)
-            energy = energy.coerceIn(0, 100)
         }
     }
 
     private fun updateWith(pet: VirtualPet) {
-        hunger = pet.hunger
-        happiness = pet.happiness
-        energy = pet.energy
+        hunger = pet.hunger.coerceIn(0, 100)
+        happiness = pet.happiness.coerceIn(0, 100)
+        energy = pet.energy.coerceIn(0, 100)
     }
 
     private fun isAlive() = hunger != 100 && happiness != 0 && energy != 0
