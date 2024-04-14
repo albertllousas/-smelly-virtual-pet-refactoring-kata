@@ -20,30 +20,19 @@ class VirtualPet(hunger: Int = 50, happiness: Int = 50, energy: Int = 50) {
 
     fun interact(action: String) {
 
-        val parts = action.split(" ")
-
         if (isAlive()) {
-            if (parts[0] == "play") {
-                if (parts[1] == "hide-and-seek") {
-                    playHideAndSeek(this).let { updateWith(it) }
-                } else if (parts[1] == "chess") {
-                    playChess(this).let { updateWith(it) }
-                } else if (parts[1] == "toys") {
-                    playWithToys(this).let { updateWith(it) }
-                }
-            } else if (parts[0] == "feed") {
-                if (parts[1] == "meat") {
-                    feedWithMeat(this).let { updateWith(it) }
-                } else if (parts[1] == "vegetables") {
-                    feedWithVegetables(this).let { updateWith(it) }
-                } else if (parts[1] == "candy") {
-                    feedWithCandy(this).let { updateWith(it) }
-                }
-            } else if (parts[0] == "rest") {
-                rest(this).let { updateWith(it) }
-            } else if (parts[0] == "nothing") {
-                doNothing(this).let { updateWith(it) }
-            }
+            when(action) {
+                "play hide-and-seek" -> playHideAndSeek(this)
+                "play chess" -> playChess(this)
+                "play toys" -> playWithToys(this)
+                "feed meat" -> feedWithMeat(this)
+                "feed vegetables" -> feedWithVegetables(this)
+                "feed candy" -> feedWithCandy(this)
+                "rest" -> rest(this)
+                "nothing" -> doNothing(this)
+                else -> this
+            }.let { updateWith(it) }
+
             hunger = hunger.coerceIn(0, 100)
             happiness = happiness.coerceIn(0, 100)
             energy = energy.coerceIn(0, 100)
