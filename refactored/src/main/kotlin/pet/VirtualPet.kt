@@ -1,5 +1,7 @@
 package pet
 
+import pet.Interaction.Companion.playHideAndSeek
+
 class VirtualPet(hunger: Int = 50, happiness: Int = 50, energy: Int = 50) {
 
     var hunger = hunger
@@ -16,9 +18,7 @@ class VirtualPet(hunger: Int = 50, happiness: Int = 50, energy: Int = 50) {
         if (isAlive()) {
             if (parts[0] == "play") {
                 if (parts[1] == "hide-and-seek") {
-                    happiness += 15
-                    energy -= 15
-                    hunger += 10
+                    playHideAndSeek(this).let { updateWith(it) }
                 } else if (parts[1] == "chess") {
                     happiness += 10
                     energy -= 5
@@ -51,6 +51,12 @@ class VirtualPet(hunger: Int = 50, happiness: Int = 50, energy: Int = 50) {
             happiness = happiness.coerceIn(0, 100)
             energy = energy.coerceIn(0, 100)
         }
+    }
+
+    private fun updateWith(pet: VirtualPet) {
+        hunger = pet.hunger
+        happiness = pet.happiness
+        energy = pet.energy
     }
 
     private fun isAlive() = hunger != 100 && happiness != 0 && energy != 0
