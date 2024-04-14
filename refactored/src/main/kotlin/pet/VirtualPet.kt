@@ -1,5 +1,6 @@
 package pet
 
+import pet.Interaction.Companion.feedWithCandy
 import pet.Interaction.Companion.feedWithMeat
 import pet.Interaction.Companion.feedWithVegetables
 import pet.Interaction.Companion.playChess
@@ -34,8 +35,7 @@ class VirtualPet(hunger: Int = 50, happiness: Int = 50, energy: Int = 50) {
                 } else if (parts[1] == "vegetables") {
                     feedWithVegetables(this).let { updateWith(it) }
                 } else if (parts[1] == "candy") {
-                    hunger -= 5
-                    energy += 10
+                    feedWithCandy(this).let { updateWith(it) }
                 }
             } else if (parts[0] == "rest") {
                 energy += 30
