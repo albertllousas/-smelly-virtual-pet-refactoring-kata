@@ -6,6 +6,7 @@ import pet.Interaction.Companion.feedWithVegetables
 import pet.Interaction.Companion.playChess
 import pet.Interaction.Companion.playHideAndSeek
 import pet.Interaction.Companion.playWithToys
+import pet.Interaction.Companion.rest
 
 class VirtualPet(hunger: Int = 50, happiness: Int = 50, energy: Int = 50) {
 
@@ -38,9 +39,7 @@ class VirtualPet(hunger: Int = 50, happiness: Int = 50, energy: Int = 50) {
                     feedWithCandy(this).let { updateWith(it) }
                 }
             } else if (parts[0] == "rest") {
-                energy += 30
-                hunger += 10
-                happiness = 50
+                rest(this).let { updateWith(it) }
             } else if (parts[0] == "nothing") {
                 hunger += 5
                 happiness -= 5
