@@ -4,6 +4,7 @@ import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
 import pet.Interaction.Companion.playChess
 import pet.Interaction.Companion.playHideAndSeek
+import pet.Interaction.Companion.playWithToys
 
 class InteractionTest {
 
@@ -15,5 +16,10 @@ class InteractionTest {
     @Test
     fun `should play chess`() {
         playChess(VirtualPet()) shouldBe VirtualPet(hunger = 50, happiness = 60, energy = 45)
+    }
+
+    @Test
+    fun `should play with toys`() {
+        playWithToys(VirtualPet()) shouldBe VirtualPet(hunger = 52, happiness = 70, energy = 40)
     }
 }
