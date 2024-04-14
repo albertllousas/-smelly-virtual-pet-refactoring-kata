@@ -4,36 +4,20 @@ fun interface Interaction {
     operator fun invoke(pet: VirtualPet): VirtualPet
 
     companion object {
-        val playHideAndSeek = Interaction { pet ->
-            VirtualPet(hunger = pet.hunger + 10, happiness = pet.happiness + 15, energy = pet.energy - 15)
-        }
+        val playHideAndSeek = Interaction { VirtualPet(it.hunger + 10, it.happiness + 15, it.energy - 15) }
 
-        val playChess = Interaction { pet ->
-            VirtualPet(hunger = pet.hunger, happiness = pet.happiness + 10, energy = pet.energy - 5)
-        }
+        val playChess = Interaction { VirtualPet(it.hunger, it.happiness + 10, it.energy - 5) }
 
-        val playWithToys = Interaction { pet ->
-            VirtualPet(hunger = pet.hunger + 2, happiness = pet.happiness + 20, energy = pet.energy - 10)
-        }
+        val playWithToys = Interaction { VirtualPet(it.hunger + 2, it.happiness + 20, it.energy - 10) }
 
-        val feedWithMeat = Interaction { pet ->
-            VirtualPet(hunger = pet.hunger - 20, happiness = pet.happiness, energy = pet.energy + 15)
-        }
+        val feedWithMeat = Interaction { VirtualPet(it.hunger - 20, it.happiness, it.energy + 15) }
 
-        val feedWithVegetables = Interaction { pet ->
-            VirtualPet(hunger = pet.hunger - 10, happiness = pet.happiness, energy = pet.energy + 5)
-        }
+        val feedWithVegetables = Interaction { VirtualPet(it.hunger - 10, it.happiness, it.energy + 5) }
 
-        val feedWithCandy = Interaction { pet ->
-            VirtualPet(hunger = pet.hunger - 5, happiness = pet.happiness, energy = pet.energy + 10)
-        }
+        val feedWithCandy = Interaction { VirtualPet(it.hunger - 5, it.happiness, it.energy + 10) }
 
-        val rest = Interaction { pet ->
-            VirtualPet(hunger = pet.hunger + 10, happiness = 50, energy = pet.energy + 30)
-        }
+        val rest = Interaction { VirtualPet(it.hunger + 10, 50, it.energy + 30) }
 
-        val doNothing = Interaction { pet ->
-            VirtualPet(hunger = pet.hunger + 5, happiness = pet.happiness - 5, energy = pet.energy - 5)
-        }
+        val doNothing = Interaction { VirtualPet(it.hunger + 5, it.happiness - 5, it.energy - 5) }
     }
 }
