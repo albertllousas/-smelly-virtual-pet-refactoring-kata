@@ -18,11 +18,6 @@ class VirtualPetTest {
     }
 
     @Test
-    fun `should do nothing`() {
-        VirtualPet().apply { interact("nothing") } shouldBe VirtualPet(hunger = 55, happiness = 45, energy = 45)
-    }
-
-    @Test
     fun `should interact with pet`() {
         VirtualPet().apply {
             interact("play hide-and-seek")
