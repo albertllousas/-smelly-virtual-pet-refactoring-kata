@@ -9,7 +9,12 @@ import pet.Interaction.Companion.playHideAndSeek
 import pet.Interaction.Companion.playWithToys
 import pet.Interaction.Companion.rest
 
-class VirtualPet(hunger: Int = 50, happiness: Int = 50, energy: Int = 50) {
+class VirtualPet(
+    hunger: Int = 50,
+    happiness: Int = 50,
+    energy: Int = 50,
+    val interactionRegistry: InteractionRegistry = InteractionRegistry.default
+) {
 
     var hunger = hunger
         private set
@@ -20,17 +25,7 @@ class VirtualPet(hunger: Int = 50, happiness: Int = 50, energy: Int = 50) {
 
     fun interact(action: String) {
         if (isAlive()) {
-            when(action) {
-                "play hide-and-seek" -> playHideAndSeek(this)
-                "play chess" -> playChess(this)
-                "play toys" -> playWithToys(this)
-                "feed meat" -> feedWithMeat(this)
-                "feed vegetables" -> feedWithVegetables(this)
-                "feed candy" -> feedWithCandy(this)
-                "rest" -> rest(this)
-                "nothing" -> doNothing(this)
-                else -> this
-            }.let { updateWith(it) }
+            (interactionRegistry.get(action)?.let { interaction ->  interaction(this) } ?: this).let { updateWith(it) }
         }
     }
 
@@ -63,4 +58,23 @@ class VirtualPet(hunger: Int = 50, happiness: Int = 50, energy: Int = 50) {
     }
 
     override fun toString(): String = "VirtualPet(hunger=$hunger, happiness=$happiness, energy=$energy)"
+}
+
+data class InteractionRegistry(val interactions: Map<String, Interaction> = mapOf()) {
+
+    fun register(action: String, interaction: Interaction) = InteractionRegistry(interactions + (action to interaction))
+
+    fun get(name: String): Interaction? = interactions[name]
+
+    companion object {
+        val default = InteractionRegistry()
+            .register("play hide-and-seek", playHideAndSeek)
+            .register("play chess", playChess)
+            .register("play toys", playWithToys)
+            .register("feed meat", feedWithMeat)
+            .register("feed vegetables", feedWithVegetables)
+            .register("feed candy", feedWithCandy)
+            .register("rest", rest)
+            .register("nothing", doNothing)
+    }
 }
