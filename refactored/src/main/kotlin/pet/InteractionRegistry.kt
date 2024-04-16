@@ -1,10 +1,24 @@
 package pet
 
-data class InteractionRegistry(val interactions: Map<String, Interaction> = mapOf()) {
+data class InteractionRegistry(
+    val interactions: Map<String, Interaction> = mapOf(),
+    val interactionsWithAnArgument: Map<String, (argument: String) -> Interaction> = mapOf()
+) {
 
-    fun register(action: String, interaction: Interaction) = InteractionRegistry(interactions + (action to interaction))
+    fun register(action: String, interaction: Interaction) = this.copy(
+        interactions = interactions + (action to interaction)
+    )
 
-    fun get(name: String): Interaction? = interactions[name]
+    fun register(action: String, interaction: (argument: String) -> Interaction) = this.copy(
+        interactionsWithAnArgument = interactionsWithAnArgument + (action to interaction)
+    )
+
+    fun get(action: String): Interaction? =
+        if (interactions[action] != null) interactions[action]
+        else {
+            val parts = action.split(" ")
+            interactionsWithAnArgument[parts[0]]?.invoke(parts[1])
+        }
 
     companion object {
         val default = InteractionRegistry()
