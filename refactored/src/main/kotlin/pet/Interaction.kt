@@ -19,5 +19,12 @@ fun interface Interaction {
         val rest = Interaction { VirtualPet(it.hunger + 10, 50, it.energy + 30) }
 
         val doNothing = Interaction { VirtualPet(it.hunger + 5, it.happiness - 5, it.energy - 5) }
+
+        val walk: (minutes: Int) -> Interaction = { min ->
+            Interaction {
+                if (min > 0) VirtualPet(it.hunger + (2 * min), it.happiness - (2 * min), it.energy - (2 * min))
+                else it
+            }
+        }
     }
 }

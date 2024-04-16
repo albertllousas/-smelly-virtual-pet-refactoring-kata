@@ -10,6 +10,7 @@ import pet.Interaction.Companion.playChess
 import pet.Interaction.Companion.playHideAndSeek
 import pet.Interaction.Companion.playWithToys
 import pet.Interaction.Companion.rest
+import pet.Interaction.Companion.walk
 
 class InteractionTest {
 
@@ -51,5 +52,13 @@ class InteractionTest {
     @Test
     fun `should do nothing`() {
         doNothing(VirtualPet()) shouldBe VirtualPet(hunger = 55, happiness = 45, energy = 45)
+    }
+
+    @Test
+    fun `should walk the pet`() {
+        walk(1)(VirtualPet()) shouldBe VirtualPet(hunger = 52, happiness = 48, energy = 48)
+        walk(5)(VirtualPet()) shouldBe VirtualPet(hunger = 60, happiness = 40, energy = 40)
+        walk(0)(VirtualPet()) shouldBe VirtualPet(hunger = 50, happiness = 50, energy = 50)
+        walk(-1)(VirtualPet()) shouldBe VirtualPet(hunger = 50, happiness = 50, energy = 50)
     }
 }

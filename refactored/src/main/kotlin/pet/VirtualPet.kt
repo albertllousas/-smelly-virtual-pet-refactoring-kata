@@ -1,14 +1,5 @@
 package pet
 
-import pet.Interaction.Companion.doNothing
-import pet.Interaction.Companion.feedWithCandy
-import pet.Interaction.Companion.feedWithMeat
-import pet.Interaction.Companion.feedWithVegetables
-import pet.Interaction.Companion.playChess
-import pet.Interaction.Companion.playHideAndSeek
-import pet.Interaction.Companion.playWithToys
-import pet.Interaction.Companion.rest
-
 class VirtualPet(
     hunger: Int = 50,
     happiness: Int = 50,
@@ -68,13 +59,13 @@ data class InteractionRegistry(val interactions: Map<String, Interaction> = mapO
 
     companion object {
         val default = InteractionRegistry()
-            .register("play hide-and-seek", playHideAndSeek)
-            .register("play chess", playChess)
-            .register("play toys", playWithToys)
-            .register("feed meat", feedWithMeat)
-            .register("feed vegetables", feedWithVegetables)
-            .register("feed candy", feedWithCandy)
-            .register("rest", rest)
-            .register("nothing", doNothing)
+            .register("play hide-and-seek", Interaction.playHideAndSeek)
+            .register("play chess", Interaction.playChess)
+            .register("play toys", Interaction.playWithToys)
+            .register("feed meat", Interaction.feedWithMeat)
+            .register("feed vegetables", Interaction.feedWithVegetables)
+            .register("feed candy", Interaction.feedWithCandy)
+            .register("rest", Interaction.rest)
+            .register("nothing", Interaction.doNothing)
     }
 }
