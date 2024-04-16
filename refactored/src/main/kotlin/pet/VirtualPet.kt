@@ -4,7 +4,7 @@ class VirtualPet(
     hunger: Int = 50,
     happiness: Int = 50,
     energy: Int = 50,
-    val interactionRegistry: InteractionRegistry = InteractionRegistry.default
+    private val interactionRegistry: InteractionRegistry = InteractionRegistry.default
 ) {
 
     var hunger = hunger

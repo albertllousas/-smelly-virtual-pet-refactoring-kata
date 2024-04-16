@@ -52,7 +52,8 @@ class VirtualPetTest {
             interact("feed candy")
             interact("nothing")
             interact("nothing")
-        } shouldBe VirtualPet(hunger = 82, happiness = 55, energy = 75)
+            interact("walk 2")
+        } shouldBe VirtualPet(hunger = 86, happiness = 51, energy = 71)
     }
 
     @Test

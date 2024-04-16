@@ -30,5 +30,6 @@ data class InteractionRegistry(
             .register("feed candy", Interaction.feedWithCandy)
             .register("rest", Interaction.rest)
             .register("nothing", Interaction.doNothing)
+            .register("walk") { min -> Interaction.walk(min.toInt()) }
     }
 }
